@@ -47,7 +47,7 @@ public class PolicyBatchConfig {
         return input -> {
 
             if (input.getMailAddress() != null && input.getMailAddress().trim().length() > 50) {
-                System.err.println("HIBA: Sor kihagyva - MailAddress túl hosszú. Chdrnum: " + input.getChdrnum());
+                System.err.println("HIBA: MailAddress túl hosszú. Chdrnum: " + input.getChdrnum());
                 return null;
             }
 
