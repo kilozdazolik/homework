@@ -1,8 +1,7 @@
 package com.nn.homework.Config;
 
-import com.nn.homework.DTO.SurValuesDTO;
+import com.nn.homework.Models.DTO.SurValuesDTO;
 import com.nn.homework.Models.SurValues;
-import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;

@@ -24,7 +24,7 @@ public class Policy {
     private String lifcNum;
 
     @Column(name = "LifcName", length = 50)
-    private String lifchName;
+    private String lifcName;
 
     @Column(name = "Aracde", length = 3)
     private String aracde;

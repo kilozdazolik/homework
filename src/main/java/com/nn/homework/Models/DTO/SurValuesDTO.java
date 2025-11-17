@@ -1,4 +1,4 @@
-package com.nn.homework.DTO;
+package com.nn.homework.Models.DTO;
 
 import lombok.Data;
 
