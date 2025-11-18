@@ -78,25 +78,24 @@ public class OutpayHeaderBatchConfig {
             output.setNotice06(input.getNotice06().trim());
             output.setClaimId(input.getClaimId().trim());
 
-                if (StringUtils.hasText(input.getPrintDate())) {
-                    LocalDate printDate = LocalDate.parse(input.getPrintDate().trim(), DATE_FORMATTER);
-                    output.setPrintDate(printDate.atStartOfDay());
-                }
+            if (StringUtils.hasText(input.getPrintDate())) {
+                LocalDate printDate = LocalDate.parse(input.getPrintDate().trim(), DATE_FORMATTER);
+                output.setPrintDate(printDate.atStartOfDay());
+            }
 
-                if (StringUtils.hasText(input.getRegDate())) {
-                    LocalDate regDate = LocalDate.parse(input.getRegDate().trim(), DATE_FORMATTER);
-                    output.setRegDate(regDate.atStartOfDay());
-                }
+            if (StringUtils.hasText(input.getRegDate())) {
+                LocalDate regDate = LocalDate.parse(input.getRegDate().trim(), DATE_FORMATTER);
+                output.setRegDate(regDate.atStartOfDay());
+            }
 
-                if (StringUtils.hasText(input.getTp2ProcessDate())) {
-                    LocalDate tp2Date = LocalDate.parse(input.getTp2ProcessDate().trim(), DATE_FORMATTER);
-                    output.setTp2ProcessDate(tp2Date.atStartOfDay());
-                }
+            if (StringUtils.hasText(input.getTp2ProcessDate())) {
+                LocalDate tp2Date = LocalDate.parse(input.getTp2ProcessDate().trim(), DATE_FORMATTER);
+                output.setTp2ProcessDate(tp2Date.atStartOfDay());
+            }
 
-                if (StringUtils.hasText(input.getBenPercent())) {
-                    output.setBenPercent(new BigDecimal(input.getBenPercent().trim()));
-                }
-
+            if (StringUtils.hasText(input.getBenPercent())) {
+                output.setBenPercent(new BigDecimal(input.getBenPercent().trim()));
+            }
 
 
             return output;

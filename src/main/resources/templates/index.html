@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Házi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+
+        html {
+            box-sizing: border-box;
+            font-size: 62.5%; // 1rem = 10px;
+        }
+        body { font-family: Arial, sans-serif; margin: 4rem; }
+        .container { max-width: 60rem; margin: auto; padding: 2rem; border: 1px solid #ccc; border-radius: 10px; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        select, input { width: 100%; padding: 8px; }
+        button { background-color: #28a745; color: white; padding: 10px 20px; border: none; cursor: pointer; width: 100%; font-size: 16px;}
+        button:hover { background-color: #218838; }
+        .message { margin-top: 2rem; padding: 10px; background-color: #e2e3e5; border-radius: 5px; text-align: center;}
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 style="text-align: center;">Importáló</h2>
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="jobType">Melyik fájlt töltöd fel?</label>
+            <select name="jobType" id="jobType">
+                <option value="SUR_VALUES">Redemption Data (ZTPSPF - Fix szélességű)</option>
+                <option value="POLICY">Policy Data (CUSTCOMP - Pipe tagolt)</option>
+                <option value="OUTPAY">Outpay Header (OUTPH - Pontosvessző tagolt)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="file">Fájl kiválasztása:</label>
+            <input type="file" name="file" id="file" required />
+        </div>
+
+        <button type="submit">Importálás Indítása</button>
+    </form>
+
+    <div th:if="${message}" class="message">
+        <h3 th:text="${message}"></h3>
+    </div>
+</div>
+
+</body>
+</html>
