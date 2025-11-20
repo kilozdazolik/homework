@@ -38,7 +38,7 @@ public class SurValuesBatchConfig {
 
         return new FlatFileItemReaderBuilder<SurValuesDTO>()
                 .name("surValuesReader")
-                .resource(new FileSystemResource("ZTPSPF.TXT"))
+                .resource(new FileSystemResource("ZTPSPF.txt"))
                 .lineTokenizer(tokenizer)
                 .fieldSetMapper(fieldSetMapper)
                 .build();
