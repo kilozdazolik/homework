@@ -1,3 +1,4 @@
+
 The application provides a web-based operator interface for parsing various file formats (Fixed-width, Pipe-delimited, Semicolon-delimited) ensuring data integrity and fault tolerance.
 
 ## 🛠️ Technology Stack
@@ -11,6 +12,13 @@ The application provides a web-based operator interface for parsing various file
 
 ## 💻 How to Run
 
+### Option 1: Docker (Recommended) 
+The application is fully containerized. You don't need Java or PostgreSQL installed on your machine. 
+1. **Build the project:** ```bash mvn clean package -DskipTests ``` 
+2.  **Start the environment (App + DB):** ```bash docker-compose up --build ``` 
+3. **Access the UI:** Open your browser at `http://localhost:8080` 
+
+### Option 2: Local Development
 ### Prerequisites
 1.  **Java 21** installed.
 2.  **PostgreSQL** server running locally.
