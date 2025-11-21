@@ -5,6 +5,7 @@ import com.nn.homework.Models.Policy;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -18,6 +19,7 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -27,10 +29,13 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class PolicyBatchConfig {
 
     @Bean
-    public FlatFileItemReader<PolicyDTO> policyReader() {
+    @StepScope
+    public FlatFileItemReader<PolicyDTO> policyReader(@Value("#{jobParameters['fullPath']}") String fullPath) {
+        if (fullPath == null) return null;
+
         return new FlatFileItemReaderBuilder<PolicyDTO>()
                 .name("policyReader")
-                .resource(new FileSystemResource("CUSTCOMP01.TXT"))
+                .resource(new FileSystemResource(fullPath))
                 .lineTokenizer(new DelimitedLineTokenizer() {{
                     setDelimiter("|");
                     setNames("chdrnum", "cownum", "ownerName", "lifcNum", "lifcName", "aracde", "agntnum", "mailAddress");

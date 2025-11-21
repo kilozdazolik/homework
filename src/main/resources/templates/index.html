@@ -28,6 +28,8 @@
         .message { margin-top: 2rem; padding: 10px; background-color: #e2e3e5; border-radius: 5px; text-align: center;}
         .success { color: green; }
         .error { color: red; }
+        .export {text-align: center;}
+        .export-btn {background-color: #007bff;}
     </style>
 </head>
 <body>
@@ -53,6 +55,12 @@
 
         <button type="submit">Importálás Indítása</button>
     </form>
+
+    <div class="export">
+        <form method="POST" action="/export">
+            <button class="export-btn" type="submit">Exportálás Indítása</button>
+        </form>
+    </div>
 
     <div th:if="${message}" class="message">
         <h3 th:text="${message}"></h3>

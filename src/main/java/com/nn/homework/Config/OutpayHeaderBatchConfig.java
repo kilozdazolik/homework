@@ -5,6 +5,7 @@ import com.nn.homework.Models.OutpayHeader;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
+import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
@@ -18,6 +19,7 @@ import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
 import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.FileSystemResource;
@@ -34,7 +36,10 @@ public class OutpayHeaderBatchConfig {
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyyMMdd");
 
     @Bean
-    public FlatFileItemReader<OutpayHeaderDTO> outpayHeaderReader() {
+    @StepScope
+    public FlatFileItemReader<OutpayHeaderDTO> outpayHeaderReader(@Value("#{jobParameters['fullPath']}") String fullPath) {
+        if (fullPath == null) return null;
+
         DelimitedLineTokenizer tokenizer = new DelimitedLineTokenizer();
         tokenizer.setDelimiter(";");
         tokenizer.setNames("clntnum", "chdrnum", "letterType", "printDate", "dataID",
@@ -49,7 +54,7 @@ public class OutpayHeaderBatchConfig {
 
         return new FlatFileItemReaderBuilder<OutpayHeaderDTO>()
                 .name("outpayHeaderReader")
-                .resource(new FileSystemResource("OUTPH_CUP_20200204_1829.TXT"))
+                .resource(new FileSystemResource(fullPath))
                 .lineTokenizer(tokenizer)
                 .fieldSetMapper(fieldSetMapper)
                 .build();
