@@ -15,10 +15,6 @@ The application provides a web-based operator interface for parsing various file
 ### Option 1: Docker (Recommended) 
 The application is fully containerized. You don't need Java or PostgreSQL installed on your machine. 
 1. **Build the project:** ```bash mvn clean package -DskipTests ``` 
-2. **Create a .env file**
-`POSTGRES_DB=homework 
-POSTGRES_USER=postgres  
-POSTGRES_PASSWORD=YOUR_PASSWORD`
 4.  **Start the environment (App + DB):** ```bash docker-compose up --build ``` 
 5. **Access the UI:** Open your browser at `http://localhost:8080` 
 
